@@ -1,0 +1,47 @@
+
+    <div id='container'>    
+      <h1>Consultados por {{usuario}}</h1> 
+
+      <select v-model="booleanSelect">
+          <option disabled value="">Seleccione una opcion</option>
+          <option v-bind:value='true'>listado</option>
+          <option v-bind:value='false'>tabla</option>
+      </select>
+
+       <p>{{stringMesaggeShow}}</p>
+       <p>{{contentPressedElement}}</p>
+
+      <div id='muestralista' v-if="booleanSelect">
+         
+          <ul id="v-for-object" class='row justify-content-center'>
+          
+          
+          <li v-for="item in listaJSON" 
+              :key="item.id" v-bind:style="cssInitialColor" v-bind:class="{selected: item.passover}"
+              @mouseover="over(item)" @mouseleave="out(item)">
+             {{ item.first_name }} {{ item.last_name }}
+          </li>
+          </ul>
+      </div>
+      <div id='muestratabla' v-if="!booleanSelect" >
+          <table>
+              <tr>
+                  <th>Identificacion</th>                    
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Genero</th>
+              </tr>
+              <tr v-for="item in listaJSON" :key="item.id"  v-bind:style="cssInitialColor"
+                  v-bind:class="{selected: item.passover}"  @mouseover="over(item)" @mouseleave="out(item)">
+
+                  <td v-bind:style="cssInitialColor">{{ item.id }}</td>
+                  <td v-bind:style="cssInitialColor">{{ item.first_name }}</td>
+                  <td v-bind:style="cssInitialColor">{{ item.last_name }}</td>
+                  <td v-bind:style="cssInitialColor">{{ item.gender }}</td>
+              </tr>
+          </table>
+      </div>
+
+  </div>  
+
+
