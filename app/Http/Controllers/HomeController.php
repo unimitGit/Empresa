@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CuentaUsuarios;
+use App\Facades\CuentaUsuarios as TestContador;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -30,9 +30,7 @@ class HomeController extends Controller
     public function enviaformulario()
     {
         $valorMax = Cache::rememberForever('maximo', function () { // Ojo aqui, enviar parametros a un closure
-            //echo TestContador::retornaMaxUsers();
-            return CuentaUsuarios::retornaMaxUsers();
-            
+            return TestContador::retornaMaxUsers();
         });        
 
         return view('seleccionarconsulta', compact('valorMax'));

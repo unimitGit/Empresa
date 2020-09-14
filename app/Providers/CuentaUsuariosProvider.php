@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Contador\CuentaUsuarios;
-use Illuminate\Foundation\AliasLoader;
+
 
 class CuentaUsuariosProvider extends ServiceProvider
 {
@@ -15,9 +15,7 @@ class CuentaUsuariosProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('contador', function($app){
-            $loader = AliasLoader::getInstance();
-            $loader->alias('TestContador', App\Facades\CuentaUsuarios::class);
+        $this->app->bind('contador', function(){
             return new CuentaUsuarios();
         });
     }
